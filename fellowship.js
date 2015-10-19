@@ -61,20 +61,27 @@ var fellowship = {
   },
   makeBuddies: function(buddies) {
     // create an aside tag
-    // insert your aside before rivendell///////////////////////////////
-    var buddiesAside = document.createElement('aside');
-    document.body.appendChild(buddiesAside);
     // display an unordered list of buddies in the aside
-    var buddiesUl = document.createElement('ul');
-    document.body.aside.appendChild(buddiesUL);
+    // insert your aside before rivendell
+    var buddiesAside = document.createElement('aside');
+    var buddyList = document.createElement('ul');
+    buddyList.className = "buddies"
     for (var i = 0; i < fellowship.buddies.length; i ++) {
       var buddy = document.createElement('li');
-      buddy.textContent = fellowship.buddies[i];
-      buddiesUl.appendChild(buddy);
+      buddy.innerHTML = fellowship.buddies[i];
+      buddyList.appendChild(buddy);
     }
+    // append ul to aside
+    buddiesAside.appendChild(buddyList);
+    // append asside to article
+    var buddyInsert = document.querySelectorAll('article')[0];
+    buddyInsert.appendChild(buddiesAside);
   },
   beautifulStranger: function() {
     // change the buddy 'Strider' textnode to "Aragorn"
+    var buddies = document.getElementsByClassName('buddies')[0];
+    var strider = buddies.querySelectorAll('li')[3];
+    strider.innerHTML = "Aragorn";
   },
   forgeTheFellowShip: function() {
     // move the hobbits and the buddies to Rivendell
